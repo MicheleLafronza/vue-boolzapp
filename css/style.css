@@ -4,3 +4,58 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* regole container */
+.container {
+    height: 100vh;
+    background-color: rgba(216,219,213,255);
+    
+}
+
+header {
+    height: 15vh;
+    background-color: rgba(0,150,136,255);
+    position: relative;
+    z-index: 1;
+}
+
+/* regole window */
+.window {
+    display: flex;
+    width: 60%;    
+    z-index: 2;
+    height: calc(100vh - 40px);
+    position: absolute;
+    top: 20px; /* Allinea il blocco in cima */
+    left: 0;
+    right: 0;
+    margin: auto; /* Centra orizzontalmente */
+    /* debug */
+    background-color: white;
+    border: solid 1px black;
+
+}
+
+/* regole box-left-right */
+.box-left {
+    flex-basis: 40%;
+    /* debug */
+    background-color: yellow;
+    min-height: 100%;
+}
+
+.box-right {
+    flex-basis: 60%;
+    /* degub */
+    background-color: blue;
+    min-height: 100%;
+}
+
+/* regole elementi interni box-left */
+.my-user-img {
+    padding: 5px;
+}
+
+.my-user-name {
+    padding: 5px;
+}
