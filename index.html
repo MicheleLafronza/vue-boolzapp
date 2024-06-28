@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <!-- script Vue 3 -->
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- link css -->
@@ -17,19 +21,188 @@
         <!-- barra colorata header -->
         <header></header>
 
+        <!-- window principale dell'app -->
         <div class="window">
 
+            <!-- box di sinistra (nome utente e contatti) -->
             <div class="box-left">
 
+                <!-- barra nome utente -->
                 <div class="my-user-bar">
                     <img class="my-user-img" src="" alt="img">
                     <span class="my-user-name">Nome Utente</span>
+                </div>
+
+                <!-- barra notifiche desktop -->
+                <div class="notification-bar">
+                    <div class="bell">CAMPANELLA</div>
+                    <div class="bell-text">
+                        Ricevi notifiche di nuovi messaggi<br><a href="">Attiva notifiche desktop</a>
+                    </div>
                     
+                    
+
+                </div>
+
+                <!-- barra ricerca contatti -->
+                <div class="search-bar">
+                    <input class="search-input" type="text">
+                </div>
+
+                <!-- lista contatti -->
+                <ul class="contacts-list">
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                    <li class="contact-bar">
+                        <div class="info-contact">
+                            <img class="contact-img" src="" alt="img contact">
+                            <span class="contact-name">Nome Utente</span><br>
+                            <span class="last-message">Ultimo messaggio</span>
+                        </div>
+
+                        <div class="last-message-time">12:00</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- box di destra (finestra invio e lettura messaggi) -->
+            <div class="box-right">
+
+                <!-- barra del contatto attivo con cui si sta parlando -->
+                <div class="active-contact-bar">
+                    <div class="active-contact-info">
+                        <div class="active-contact-name-image">
+                            <img class="active-contact-image" src="" alt="img">
+                            <span>Nome Contatto</span><br>
+                            <span class="last-online">Ultimo accesso</span>
+                        </div>
+                    </div>
+
+                    <div class="bar-icons">Icone</div>
+                </div>
+
+                <!-- finestra chat -->
+                 <div class="chat-window">
+
+                    <div class="invisible-chat-container">
+                        <div class="message-sent">
+                            Hai portato a spasso il cane?
+                        </div>
+                        
+                        <div class="message-received">
+                            Tutto fatto!
+                        </div>
+                        
+                    </div>
+                    
+
+                 </div>
+
+                <!-- barra invio messaggi -->
+                <div class="send-bar">
+                    <span>faccina</span>
+                    <input class="send-input" type="text">
+                    <span>microfono</span>
                 </div>
 
             </div>
-
-            <div class="box-right"></div>
 
         </div>
     
