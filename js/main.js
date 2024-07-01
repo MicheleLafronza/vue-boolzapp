@@ -145,7 +145,7 @@ const { createApp } = Vue
           {
             name: 'Hollyhock',
             avatar: './img/hollyhock.webp',
-            visible: true,
+            visible: false,
             messages: [
               {
                 date: '10/01/2020 15:30:55',
@@ -216,22 +216,43 @@ const { createApp } = Vue
 
         // variabile nuovo messaggio
         newText: '',
+
+        // varibile per ricerca contatti
+        search: '',
       }
+    },
+    computed: {
+      
     },
     methods: {
       // funzione che mi permette di cambiare il contatto selezionato cambiando l'index
       select(index) {
         this.selected = index;
       },
+
+      // funzione per inviare un messaggio con risposta automatica dopo 1 secondo
       sendMessage() {
         this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: this.newText, status: 'sent' });
         this.newText = '';
         setTimeout(() => {
           this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: 'Ok', status: 'received' });
         }, "1000");
-      }
+      },
+      searched() {
+        const searchText = this.search.toLowerCase(); 
+        for (let index = 0; index < this.contacts.length; index++) {
+          const nameToSearch = this.contacts[index].name.toLowerCase();
+          console.log(nameToSearch);
+          if (nameToSearch.includes(searchText)) {
+            this.contacts[index].visible = true;
+          } else {
+            this.contacts[index].visible = false;
+          }
+          console.log(this.contacts[index].visible);
+        }
+      },
     },
     mounted() {
-        
+
     }
   }).mount('#app')
