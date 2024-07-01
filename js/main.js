@@ -68,7 +68,7 @@ const { createApp } = Vue
             messages: [
               {
                 date: '10/01/2020 15:30:55',
-                message: 'Diane ciao, per caso oggi dovevamo vederci',
+                message: 'Diane ciao, per caso oggi dovevamo vederci?',
                 status: 'sent'
               },
 
@@ -213,12 +213,22 @@ const { createApp } = Vue
 
         // variabile che permette di selezione quale contatto deve essere attivo
         selected: 0,
+
+        // variabile nuovo messaggio
+        newText: '',
       }
     },
     methods: {
       // funzione che mi permette di cambiare il contatto selezionato cambiando l'index
       select(index) {
         this.selected = index;
+      },
+      sendMessage() {
+        this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: this.newText, status: 'sent' });
+        this.newText = '';
+        setTimeout(() => {
+          this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: 'Ok', status: 'received' });
+        }, "1000");
       }
     },
     mounted() {

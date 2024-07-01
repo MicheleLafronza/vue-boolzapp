@@ -95,8 +95,8 @@
 
                     <div class="invisible-chat-container">
                         <div class="vue-click-off" v-for="(contact,index) in contacts" :key="index" :class="selected === index ? 'vue-click-on-message' : '' "> 
-                            <div v-for="(message,index) in contact.messages" :key="index" :class="{'message-sent': message.status === 'sent', 'message-received': message.status === 'received'}">
-                                {{ message.message }}
+                            <div v-for="(info,index) in contact.messages" :key="index" :class="{'message-sent': info.status === 'sent', 'message-received': info.status === 'received'}">
+                                {{ info.message }}
                             </div>
                         </div>
                     </div>
@@ -106,9 +106,9 @@
 
                 <!-- barra invio messaggi -->
                 <div class="send-bar">
-                    <span>faccina</span>
-                    <input class="send-input" type="text">
-                    <span>microfono</span>
+                    <span class="send-icons"><i class="fa-regular fa-face-smile"></i></span>
+                    <input class="send-input" type="text" placeholder="Scrivi un messaggio" v-model="newText" @keyup.enter="sendMessage">
+                    <span class="send-icons"><i class="fa-solid fa-microphone"></i></span>
                 </div>
 
             </div>

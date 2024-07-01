@@ -8,6 +8,10 @@
     font-style: normal;
 }
 
+input:focus {
+    outline: none;
+}
+
 /* regole container */
 .container {
     height: 100vh;
@@ -141,6 +145,10 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 10px;
+}
+.contact-bar:hover {
+    cursor: pointer;
+    background-color: rgba(233,235,235,255);
 }
 
 .info-contact {
@@ -276,7 +284,14 @@ header {
 
 .send-input {
     width: 80%;
-    height: 90%;
+    height: 70%;
+    border: none;
+    padding: 5px;
+}
+
+.send-icons {
+    font-size: 1.5rem;
+    color: rgba(107,115,118,255);
 }
 
 /* classi interattive */
