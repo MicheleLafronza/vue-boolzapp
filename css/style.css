@@ -194,12 +194,34 @@ header {
 }
 
 .active-contact-image {
-    padding: 5px;
+    margin-top: 5px;
     float: left;
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.active-contact-name {
+    margin-top: 5px;
+    margin-left: 5px;
+    display: inline-block;
 }
 
 .last-online {
     font-size: 0.8rem;
+    margin-left: 5px;
+    color: rgba(148,150,153,255)
+}
+
+.bar-icons {
+    color: rgba(177,177,177,255);
+    font-size: 1.5rem;
+    margin-top: 7px;
+}
+
+.bar-icons .fa-solid {
+    padding-right: 12px;
 }
 
 /* regole finestra chat */
@@ -212,29 +234,34 @@ header {
 .invisible-chat-container {
     width: 80%;
     margin: 30px auto 0 auto;
-    display: flex;
-    flex-direction: column;
     overflow: auto;
 }
 
+.message-order {
+    display: flex;
+    flex-direction: column;
+}
+
 .message-sent {
-    width: 35%;
+    max-width: 80%;
     background-color: rgba(213,249,186,255);
     padding: 20px;
     position: relative;
-    border-radius: 15px;
+    border-radius: 10px;
     align-self: flex-end;
     margin: 5px 0;
+    word-wrap: break-word;
 }
 
 .message-received {
-    width: 35%;
+    max-width: 80%;
     background-color: white;
     padding: 20px;
     position: relative;
     border-radius: 15px;
     align-self: flex-start;
     margin: 5px 0;
+    word-wrap: break-word;
 }
 
 /* regole barra invio messaggi */
@@ -250,6 +277,20 @@ header {
 .send-input {
     width: 80%;
     height: 90%;
+}
+
+/* classi interattive */
+.vue-click-off {
+    display: none;
+}
+
+.vue-click-on {
+    display: block;
+}
+
+.vue-click-on-message {
+    display: flex;
+    flex-direction: column;
 }
 
 

@@ -58,7 +58,7 @@
 
                 <!-- lista contatti -->
                 <ul class="contacts-list">
-                    <li class="contact-bar" v-for="(contact,index) in contacts" :key="index">
+                    <li class="contact-bar" v-for="(contact,index) in contacts" :key="index" @click="select(index)">
                         <div class="info-contact">
                             <img class="contact-img" :src="contact.avatar" alt="img contact">
                             <span class="contact-name">{{contact.name}}</span><br>
@@ -76,28 +76,29 @@
                 <!-- barra del contatto attivo con cui si sta parlando -->
                 <div class="active-contact-bar">
                     <div class="active-contact-info">
-                        <div class="active-contact-name-image">
-                            <img class="active-contact-image" src="" alt="img">
-                            <span>Nome Contatto</span><br>
+                        <div class="vue-click-off" v-for="(contact,index) in contacts" :key="index" :class="selected === index ? 'vue-click-on' : '' ">
+                            <img class="active-contact-image" :src="contact.avatar" alt="img">
+                            <span class="active-contact-name">{{contact.name}}</span><br>
                             <span class="last-online">Ultimo accesso</span>
                         </div>
                     </div>
 
-                    <div class="bar-icons">Icone</div>
+                    <div class="bar-icons">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-paperclip"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
                 </div>
 
                 <!-- finestra chat -->
                  <div class="chat-window">
 
                     <div class="invisible-chat-container">
-                        <div class="message-sent">
-                            Hai portato a spasso il cane?
+                        <div class="vue-click-off" v-for="(contact,index) in contacts" :key="index" :class="selected === index ? 'vue-click-on-message' : '' "> 
+                            <div v-for="(message,index) in contact.messages" :key="index" :class="{'message-sent': message.status === 'sent', 'message-received': message.status === 'received'}">
+                                {{ message.message }}
+                            </div>
                         </div>
-                        
-                        <div class="message-received">
-                            Tutto fatto!
-                        </div>
-                        
                     </div>
                     
 
