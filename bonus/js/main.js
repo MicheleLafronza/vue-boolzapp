@@ -223,7 +223,14 @@ const { createApp } = Vue
         // variabile per dropdown
         dropdownSelected: '',
 
+        // variabile se utente sta scrivendo
+        writing: false,
+
       }
+    },
+
+    computed: {
+    
     },
     
     methods: {
@@ -235,7 +242,7 @@ const { createApp } = Vue
 
       // funzione per inviare un messaggio con risposta automatica dopo 1 secondo
       sendMessage() {
-        if (/^[^\s]*[a-zA-Z0-9][^\s]*$/.test(this.newText)) {
+        if (/\S/.test(this.newText)) {
         // push del messaggio nell'array del contatto selezionato in pagina
         this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: this.newText, status: 'sent' });
         // svuoto input
@@ -301,6 +308,8 @@ const { createApp } = Vue
       }
     },
     mounted() {
-
+      setInterval(() => {
+        console.log(this.writing);
+      }, "3000");
     }
   }).mount('#app')

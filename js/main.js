@@ -301,4 +301,5 @@ const { createApp } = Vue
     mounted() {
 
     }
+    // esercizio completato
   }).mount('#app')
