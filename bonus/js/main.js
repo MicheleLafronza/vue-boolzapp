@@ -235,6 +235,7 @@ const { createApp } = Vue
 
       // funzione per inviare un messaggio con risposta automatica dopo 1 secondo
       sendMessage() {
+        if (/^[^\s]*[a-zA-Z0-9][^\s]*$/.test(this.newText)) {
         // push del messaggio nell'array del contatto selezionato in pagina
         this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: this.newText, status: 'sent' });
         // svuoto input
@@ -243,6 +244,7 @@ const { createApp } = Vue
         setTimeout(() => {
           this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: 'Ok', status: 'received' });
         }, "1000");
+       }
       },
 
       // funzione che permette di cercare una chat 
