@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- script Vue 3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <!-- link css -->
+    <link rel="stylesheet" href="css/style.css">
+    <title>Vue Boolzapp</title>
+</head>
+<body>
+    
+    <!-- container principale -->
+    <div id="app" class="container">
+
+        <!-- barra colorata header -->
+        <header></header>
+
+        <!-- window principale dell'app -->
+        <div class="window">
+
+            <!-- box di sinistra (nome utente e contatti) -->
+            <div class="box-left">
+
+                <!-- barra nome utente -->
+                <div class="my-user-bar">
+
+                    <!-- immagine utente -->
+                    <img class="my-user-img" src="https://hips.hearstapps.com/hmg-prod/images/bojack-horseman-1581519638.jpg?crop=1xw:1xh;center,top&resize=1200:*" alt="img">
+
+                    <!-- nome utente -->
+                    <span class="my-user-name">Bojack Horseman</span>
+
+                    <!-- set icone barra utente -->
+                    <span class="my-user-bar-icons">
+                        <i class="fa-solid fa-circle-notch"></i>
+                        <i class="fa-solid fa-message"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </span>
+                </div>
+
+                <!-- barra notifiche desktop -->
+                <div class="notification-bar">
+                    <div class="bell">
+                        <i class="fa-solid fa-bell-slash"></i>
+                    </div>
+                    <div class="bell-text">
+                        Ricevi notifiche di nuovi messaggi <br> <a href="">Attiva notifiche desktop</a>
+                    </div>
+                </div>
+
+                <!-- barra ricerca contatti -->
+                <div class="search-bar">
+                    <span class="search-icon"><i class="fa-solid fa-magnifying-glass"></i></span>
+
+                    <!-- input di ricerca con funzione vue che permette di filtrare i contatti -->
+                    <input class="search-input" type="text" placeholder="Cerca o inizia una nuova chat" v-model="search" @keyup.enter="searched">
+                </div>
+
+                <!-- lista contatti -->
+                <ul class="contacts-list">
+
+                    <!-- barra contatti con v-for per mostrarli dinamicamente in pagina -->
+                    <li class="contact-bar" v-for="(contact,index) in contacts" :key="index" @click="select(index)" v-show="contact.visible === true">
+
+                        <!-- sezione con tutte le info del contatto -->
+                        <div class="info-contact">
+                            <img class="contact-img" :src="contact.avatar" alt="img contact">
+                            <span class="contact-name">{{ contact.name }}</span><br>
+
+                            <!-- inserisco una funzione che stampa l'ultimo messaggio dell'array messages per ogni contatto -->
+                            <span class="last-message">{{ lastMessage(contact.messages) }}</span>
+                        </div>
+
+                        <!-- data e ora ultimo messaggio del contatto -->
+                        <div class="last-message-time">{{ lastDate(contact.messages) }}</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- box di destra (finestra invio e lettura messaggi) -->
+            <div class="box-right">
+
+                <!-- barra del contatto attivo con cui si sta parlando -->
+                <div class="active-contact-bar">
+
+                    <!-- sezione con le info del contatto attivo -->
+                    <div class="active-contact-info">
+
+                        <!-- v-for con classe che mostra solo il contatto attivo grazie all'index -->
+                        <div class="vue-click-off" v-for="(contact,index) in contacts" :key="index" :class="selected === index ? 'vue-click-on' : '' ">
+                            <img class="active-contact-image" :src="contact.avatar" alt="img">
+                            <span class="active-contact-name">{{contact.name}}</span><br>
+                            <span class="last-online">Ultimo accesso</span>
+                        </div>
+                    </div>
+
+                    <!-- sezione icone nella barra del contatto attivo -->
+                    <div class="bar-icons">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <i class="fa-solid fa-paperclip"></i>
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </div>
+                </div>
+
+                <!-- finestra chat -->
+                 <div class="chat-window">
+
+                    <!-- container interno dei messaggi -->
+                    <div class="invisible-chat-container">
+
+                        <!-- v-for che serve per selezione l'array interno dei messaggi e attivare solo la chat selezionata -->
+                        <div class="vue-click-off" v-for="(contact,index) in contacts" :key="index" :class="selected === index ? 'vue-click-on-message' : '' "> 
+
+                            <!-- stampa dei messaggi in chat con if else sulla classe per differenziare mandati e ricevuti, in piu avvio funzione di apertura e chiusura del dropdown con mouseover e mouseleave -->
+                            <div v-for="(info,index) in contact.messages" :key="index" :class="{'message-sent': info.status === 'sent', 'message-received': info.status === 'received'}" @mouseover="dropdown(index)" @mouseleave="dropdownClose()">
+                                <!-- contenuto del messaggio -->
+                                {{ info.message }}
+
+                                <!-- data e ora del messaggio -->
+                                <div class="message-time">
+                                    {{info.date}}
+                                </div>
+
+                                <!-- dropdown button per il menu a tendina -->
+                                <span class="dropdown-button"><i class="fa-solid fa-angle-down"></i></span>
+
+                                <!-- menu a tendina -->
+                                 <div class="dropdown-menu" :class="dropdownSelected === index ? 'vue-click-on' : '' ">
+                                    <ul>
+                                        <li>Info messaggio</li>
+                                        <li @click="deleteMessage(index)">Cancella messaggio</li>
+                                    </ul>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                 </div>
+
+                <!-- barra invio messaggi -->
+                <div class="send-bar">
+                    <span class="send-icons"><i class="fa-regular fa-face-smile"></i></span>
+
+                    <!-- input con funzione per inviare un messaggio e ricevere una risposta automatica -->
+                    <input class="send-input" type="text" placeholder="Scrivi un messaggio" v-model="newText" @keyup.enter="sendMessage">
+                    <span class="send-icons"><i class="fa-solid fa-microphone"></i></span>
+                </div>
+
+            </div>
+
+        </div>
+    
+    
+    </div>
+
+    <!-- script js -->
+    <script src="js/main.js"></script>
+</body>
+</html>
