@@ -145,7 +145,7 @@ const { createApp } = Vue
           {
             name: 'Hollyhock',
             avatar: './img/hollyhock.webp',
-            visible: false,
+            visible: true,
             messages: [
               {
                 date: '10/01/2020 15:30:55',
@@ -219,37 +219,66 @@ const { createApp } = Vue
 
         // varibile per ricerca contatti
         search: '',
+
+        // variabile per dropdown
+        dropdownSelected: '',
       }
     },
-    computed: {
-      
-    },
+
     methods: {
-      // funzione che mi permette di cambiare il contatto selezionato cambiando l'index
+      // funzione che mi permette di cambiare il contatto selezionato
       select(index) {
+        // il valore della variabile selected cambia a seconda dell'index che clicchiamo in pagina
         this.selected = index;
       },
 
       // funzione per inviare un messaggio con risposta automatica dopo 1 secondo
       sendMessage() {
+        // push del messaggio nell'array del contatto selezionato in pagina
         this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: this.newText, status: 'sent' });
+        // svuoto input
         this.newText = '';
+        // set timeout per pushare un messaggio ricevuto preimpostato 
         setTimeout(() => {
           this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: 'Ok', status: 'received' });
         }, "1000");
       },
+      // funzione che permette di cercare una chat 
       searched() {
+        // prendo il valore immesso dall'utente e lo rendo lowercase
         const searchText = this.search.toLowerCase(); 
+        // creo ciclo for che passa in rassegna tutti i contatti
         for (let index = 0; index < this.contacts.length; index++) {
+          // prendo il nome del contatto e lo rendo lowercase
           const nameToSearch = this.contacts[index].name.toLowerCase();
-          console.log(nameToSearch);
+          // inizio check if else
           if (nameToSearch.includes(searchText)) {
+            // se il nome del contatto è compreso nel search visible diventa o rimane true
             this.contacts[index].visible = true;
           } else {
+            // se il nome del contatto non è compreso nel search, visible diventa o rimane false
             this.contacts[index].visible = false;
           }
-          console.log(this.contacts[index].visible);
         }
+      },
+      // funzione apri dropdown
+      dropdown(index) {
+        // assegno il valore dell'index del messaggio selezionato alla variabile dropdownSelected
+        this.dropdownSelected = index;
+        // mi assicuro che la variabile diventi un numero
+        parseInt(this.dropdownSelected);
+      },
+      // funzione chiudi dropdown
+      dropdownClose() {
+        // svuoto il valore della variabile
+        this.dropdownSelected = '';
+      },
+      // funzione per cancellare un messaggio
+      deleteMessage(messageIndex){
+        // variabile che mi torna array dei messaggi del contatto selezionato
+        const messageList = this.contacts[this.selected].messages;
+        // funzione splice con indice preso dal click in pagina per rimuovere il messaggio
+        messageList.splice(messageIndex, 1);
       },
     },
     mounted() {
