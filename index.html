@@ -73,12 +73,14 @@
                         <!-- sezione con tutte le info del contatto -->
                         <div class="info-contact">
                             <img class="contact-img" :src="contact.avatar" alt="img contact">
-                            <span class="contact-name">{{contact.name}}</span><br>
-                            <span class="last-message">Ultimo messaggio</span>
+                            <span class="contact-name">{{ contact.name }}</span><br>
+
+                            <!-- inserisco una funzione che stampa l'ultimo messaggio dell'array messages per ogni contatto -->
+                            <span class="last-message">{{ lastMessage(contact.messages) }}</span>
                         </div>
 
                         <!-- data e ora ultimo messaggio del contatto -->
-                        <div class="last-message-time">12:00</div>
+                        <div class="last-message-time">{{ lastDate(contact.messages) }}</div>
                     </li>
                 </ul>
             </div>

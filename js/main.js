@@ -224,7 +224,7 @@ const { createApp } = Vue
         dropdownSelected: '',
       }
     },
-
+    
     methods: {
       // funzione che mi permette di cambiare il contatto selezionato
       select(index) {
@@ -243,6 +243,7 @@ const { createApp } = Vue
           this.contacts[this.selected].messages.push({ date:'10/01/2020 15:30:55', message: 'Ok', status: 'received' });
         }, "1000");
       },
+
       // funzione che permette di cercare una chat 
       searched() {
         // prendo il valore immesso dall'utente e lo rendo lowercase
@@ -261,6 +262,7 @@ const { createApp } = Vue
           }
         }
       },
+
       // funzione apri dropdown
       dropdown(index) {
         // assegno il valore dell'index del messaggio selezionato alla variabile dropdownSelected
@@ -268,11 +270,13 @@ const { createApp } = Vue
         // mi assicuro che la variabile diventi un numero
         parseInt(this.dropdownSelected);
       },
+
       // funzione chiudi dropdown
       dropdownClose() {
         // svuoto il valore della variabile
         this.dropdownSelected = '';
       },
+
       // funzione per cancellare un messaggio
       deleteMessage(messageIndex){
         // variabile che mi torna array dei messaggi del contatto selezionato
@@ -280,6 +284,18 @@ const { createApp } = Vue
         // funzione splice con indice preso dal click in pagina per rimuovere il messaggio
         messageList.splice(messageIndex, 1);
       },
+
+      // Funzione per ottenere l'ultimo messaggio, l'argomento è l'array messages
+      lastMessage(messages) {
+        // se l'array ha almeno un elemento, ritorno l'ultimo elemento e stampo in pagina il valore di message
+        return messages.length > 0 ? messages[messages.length - 1].message : '';
+      },
+
+      // funzione per ottenere la data dell'ultimo messaggio
+      lastDate(messages) {
+        // se l'array ha almeno un elemento, ritorno l'ultimo elemento e stampo in pagina il valore di date
+        return messages.length > 0 ? messages[messages.length - 1].date : '';
+      }
     },
     mounted() {
 
