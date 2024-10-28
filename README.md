@@ -1,5 +1,5 @@
-<strong>App basata sul layout di Whatsapp, sviluppata con JavaScript, a tema della
-famosa serie TV Bojack Horseman.</strong>
+<h2>App basata sul layout di Whatsapp, sviluppata con JavaScript, a tema della
+famosa serie TV Bojack Horseman.</h2>
 
 
 ![Boolzap](https://github.com/user-attachments/assets/b2c1e907-f7dc-45c3-be00-75ec582f0e39)
